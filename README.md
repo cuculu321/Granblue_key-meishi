@@ -1,0 +1,1 @@
+Granblue_key-meishi

@@ -15,11 +15,32 @@
  */
 #include "meishi.h"
 
+enum custom_keycodes {
+  GRANBLUE = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case GRANBLUE:
+      if (record->event.pressed) {
+        // when keycode QMKBEST is pressed
+        SEND_STRING(SS_LCTRL("l") "http'//game.granbluefantasy.jp/#quest/assist" SS_TAP(X_ENTER));
+      } else {
+        // when keycode QMKBEST is released
+      }
+      break;
+
+  }
+  return true;
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = LAYOUT( /* Base */
-  LCTL(KC_Z),  (KC_WWW_BACK),  LCTL(KC_R), (KC_WWW_FORWARD) \
+  GRANBLUE,  (KC_WWW_BACK),  LCTL(KC_R), (KC_WWW_FORWARD) \
 ),
 };
+
+
 
 const uint16_t PROGMEM fn_actions[] = {
 
@@ -31,10 +52,6 @@ void matrix_init_user(void) {
 
 void matrix_scan_user(void) {
 
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  return true;
 }
 
 void led_set_user(uint8_t usb_led) {
